@@ -11,16 +11,17 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package candlelight.joda.converters;
+package com.bochkov.jpa.converter.joda;
 
-import java.util.Date;
+import org.joda.time.LocalDate;
+
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
-import org.joda.time.LocalDate;
+import java.util.Date;
 
 /**
  * Converts a Joda LocalDate <-> JPA 2.1 date
- *
+ * <p>
  * This one is a little tricky, so we utilize the Joda internal LocalDate to
  * Date functions to meet our requirements.
  */
