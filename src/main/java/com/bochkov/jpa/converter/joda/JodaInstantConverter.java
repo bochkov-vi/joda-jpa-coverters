@@ -13,10 +13,11 @@
  */
 package com.bochkov.jpa.converter.joda;
 
-import java.util.Date;
+import org.joda.time.Instant;
+
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
-import org.joda.time.Instant;
+import java.util.Date;
 
 /**
  * Joda Instant <-> JPA 2.1 converter
@@ -25,10 +26,10 @@ import org.joda.time.Instant;
 public class JodaInstantConverter implements AttributeConverter<Instant, Date> {
 
     public Date convertToDatabaseColumn(Instant instant) {
-        return instant.toDate();
+        return instant != null ? instant.toDate() : null;
     }
 
     public Instant convertToEntityAttribute(Date date) {
-        return new Instant(date);
+        return date != null ? new Instant(date) : null;
     }
 }

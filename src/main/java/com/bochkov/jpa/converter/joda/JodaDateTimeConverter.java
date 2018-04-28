@@ -1,9 +1,10 @@
 package com.bochkov.jpa.converter.joda;
 
-import java.util.Date;
+import org.joda.time.DateTime;
+
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
-import org.joda.time.DateTime;
+import java.util.Date;
 
 /**
  * Joda DateTime <-> JPA 2.1 converter
@@ -12,10 +13,10 @@ import org.joda.time.DateTime;
 public class JodaDateTimeConverter implements AttributeConverter<DateTime, Date> {
 
     public Date convertToDatabaseColumn(DateTime dateTime) {
-        return dateTime.toDate();
+        return dateTime != null ? dateTime.toDate() : null;
     }
 
     public DateTime convertToEntityAttribute(Date date) {
-        return new DateTime(date);
+        return date != null ? new DateTime(date) : null;
     }
 }

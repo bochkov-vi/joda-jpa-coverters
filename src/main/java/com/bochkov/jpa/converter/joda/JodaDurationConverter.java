@@ -13,9 +13,10 @@
  */
 package com.bochkov.jpa.converter.joda;
 
+import org.joda.time.Duration;
+
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
-import org.joda.time.Duration;
 
 /**
  * Joda Duration <-> JPA 2.1 converter
@@ -24,10 +25,10 @@ import org.joda.time.Duration;
 public class JodaDurationConverter implements AttributeConverter<Duration, Long> {
 
     public Long convertToDatabaseColumn(Duration duration) {
-        return duration.getMillis();
+        return duration != null ? duration.getMillis() : null;
     }
 
     public Duration convertToEntityAttribute(Long mills) {
-        return new Duration(mills);
+        return mills != null ? new Duration(mills) : null;
     }
 }

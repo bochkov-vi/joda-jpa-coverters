@@ -13,13 +13,14 @@
  */
 package com.bochkov.jpa.converter.joda;
 
+import org.joda.time.Interval;
+
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
-import org.joda.time.Interval;
 
 /**
  * Converts a Joda Interval <-> JPA 2.1
- *
+ * <p>
  * An Interval is a complex temporal type, maintaining the start and end
  * instants and deriving the period of time between the two instants. Converting
  * this type into a JPA/SQL time is not possible using a simple Converter (can
