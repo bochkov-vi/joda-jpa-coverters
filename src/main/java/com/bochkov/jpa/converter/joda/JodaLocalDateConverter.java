@@ -26,22 +26,22 @@ import java.util.Date;
  * Date functions to meet our requirements.
  */
 @Converter(autoApply = true)
-public class JodaLocalDateConverter implements AttributeConverter<LocalDate, Object> {
+public class JodaLocalDateConverter implements AttributeConverter<Object, Date> {
 
-    public Object convertToDatabaseColumn(LocalDate localDate) {
-        return localDate != null ? localDate.toDate() : null;
-    }
-
-    public LocalDate convertToEntityAttribute(Object dateValue) {
+    public Date convertToDatabaseColumn(Object dateValue) {
         if (dateValue == null) {
             return null;
         }
-        if (dateValue instanceof Date) {
-            return LocalDate.fromDateFields((Date) dateValue);
+        if (dateValue instanceof LocalDate) {
+            return((LocalDate) dateValue).toDate() ;
         }
         if (dateValue instanceof String) {
-            return LocalDate.fromDateFields(java.sql.Date.valueOf((String) dateValue));
+            return java.sql.Date.valueOf((String) dateValue);
         }
         return null;
+    }
+
+    public Object convertToEntityAttribute(Date date) {
+        return date != null ? LocalDate.fromDateFields(date) : null;
     }
 }
